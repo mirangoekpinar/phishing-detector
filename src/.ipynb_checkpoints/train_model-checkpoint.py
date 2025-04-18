@@ -3,13 +3,13 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split
 import joblib
-from preprocessing import clean_text  # aus src importieren
 
 # Daten laden
-df = pd.read_csv('../data/emails.csv')
+df = pd.read_csv('data/combined_emails.csv')
 
-# Text bereinigen
-df['clean_text'] = df['body'].apply(clean_text)
+# ❌ Leere Zeilen oder fehlende Werte entfernen
+df = df.dropna(subset=['clean_text', 'label'])
+df = df[df['clean_text'].str.strip() != '']
 
 # Features und Labels
 vectorizer = TfidfVectorizer(max_features=3000)
@@ -24,5 +24,7 @@ model = MultinomialNB()
 model.fit(X_train, y_train)
 
 # Modell und Vektorizer speichern
-joblib.dump(model, '../models/model.pkl')
-joblib.dump(vectorizer, '../models/vectorizer.pkl')
+joblib.dump(model, 'models/model.pkl')
+joblib.dump(vectorizer, 'models/vectorizer.pkl')
+
+print("✅ Modelltraining abgeschlossen und gespeichert.")

@@ -1,19 +1,29 @@
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
-import matplotlib.pyplot as plt
-import seaborn as sns
+import pandas as pd
+import joblib
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.model_selection import train_test_split
 
-def evaluate_model(model, X_test, y_test, y_pred):
-    print("Accuracy:", accuracy_score(y_test, y_pred))
-    print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
-    print("\nClassification Report:\n", classification_report(y_test, y_pred))
+# 📥 Daten laden
+df = pd.read_csv('data/combined_emails.csv')
 
-    # Confusion Matrix Plot
-    cm = confusion_matrix(y_test, y_pred)
-    plt.figure(figsize=(6,4))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['legit', 'phishing'], yticklabels=['legit', 'phishing'])
-    plt.xlabel('Vorhergesagt')
-    plt.ylabel('Tatsächlich')
-    plt.title('Confusion Matrix')
-    plt.tight_layout()
-    plt.savefig('../reports/confusion_matrix.png')
-    plt.show()
+# ❌ Leere entfernen
+df = df.dropna(subset=['clean_text', 'label'])
+df = df[df['clean_text'].str.strip() != '']
+
+# 🔄 Daten vorbereiten
+vectorizer = joblib.load('models/vectorizer.pkl')
+X = vectorizer.transform(df['clean_text'])
+y = df['label']
+
+# 📊 Aufteilen in Train/Test
+_, X_test, _, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 🔍 Modell laden
+model = joblib.load('models/model.pkl')
+
+# 📈 Vorhersagen und Evaluation
+y_pred = model.predict(X_test)
+
+print("✅ Accuracy:", accuracy_score(y_test, y_pred))
+print("\n📊 Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+print("\n📋 Classification Report:\n", classification_report(y_test, y_pred))
