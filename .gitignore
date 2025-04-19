@@ -1,15 +1,17 @@
-# Große CSVs ignorieren
-data/*.csv
-data/.ipynb_checkpoints/
+# 📂 Datenordner und große Dateien
+data/
+*.csv
 
-# Cache- und Systemdateien ignorieren
-__pycache__/
-*.pyc
-.DS_Store
-
-# Notebook-Checkpoints ignorieren
+# 🔁 Notebook-Checkpoints
 **/.ipynb_checkpoints/
 
-# Virtuelle Umgebung (falls vorhanden)
+# ⚙️ Python-Cache & temporäre Dateien
+__pycache__/
+*.pyc
+
+# 🍏 macOS-Systemdateien
+.DS_Store
+
+# 🐍 Virtuelle Umgebungen
 env/
 venv/
