@@ -4,13 +4,13 @@ Dieses Projekt verwendet Machine Learning zur Erkennung von Phishing-Mails.
 Das Modell basiert auf TF-IDF-Vektorisierung und einem Naive Bayes-Klassifikator.
 
 ## Struktur
-- `data/`: enthält Rohdaten (CSV)
+
+- `data/`: enthält Rohdaten (CSV) – **lokal vorhanden, aber nicht im Repository**
 - `src/`: Preprocessing, Modelltraining, Evaluation
 - `notebooks/`: explorative Analyse
 - `ui/`: Streamlit-App
 - `models/`: gespeicherte Modelle (pkl)
 - `reports/`: Plots, Auswertungen
-- `thesis_notes.md`: Notizen zur Bachelorarbeit
 
 ## Setup
 ```bash
