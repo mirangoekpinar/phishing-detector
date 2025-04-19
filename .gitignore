@@ -1,5 +1,6 @@
-# Daten-Ordner ignorieren
-data/
+# Große CSVs ignorieren
+data/*.csv
+data/.ipynb_checkpoints/
 
 # Cache- und Systemdateien ignorieren
 __pycache__/
