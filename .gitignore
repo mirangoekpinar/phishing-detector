@@ -1,0 +1,14 @@
+# Daten-Ordner ignorieren
+data/
+
+# Cache- und Systemdateien ignorieren
+__pycache__/
+*.pyc
+.DS_Store
+
+# Notebook-Checkpoints ignorieren
+**/.ipynb_checkpoints/
+
+# Virtuelle Umgebung (falls vorhanden)
+env/
+venv/
