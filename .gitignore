@@ -1,18 +1,18 @@
-# 📂 Datenordner und große Dateien
+# Datenordner und große Dateien
 data/
 *.csv
 
-# 🔁 Notebook-Checkpoints
+# Notebook-Checkpoints
 **/.ipynb_checkpoints/
 
-# ⚙️ Python-Cache & temporäre Dateien
+# Python-Cache & temporäre Dateien
 __pycache__/
 *.pyc
 
-# 🍏 macOS-Systemdateien
+# macOS-Systemdateien
 .DS_Store
 
-# 🐍 Virtuelle Umgebungen
+# virtuelle Umgebungen
 env/
 venv/
 
