@@ -7,7 +7,7 @@ import joblib
 # Daten laden
 df = pd.read_csv('data/combined_emails.csv')
 
-# ❌ Leere Zeilen oder fehlende Werte entfernen
+# Leere Zeilen oder fehlende Werte entfernen
 df = df.dropna(subset=['clean_text', 'label'])
 df = df[df['clean_text'].str.strip() != '']
 
